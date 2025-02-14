@@ -129,3 +129,13 @@ comts custom ter -i sample1.1.fastq.gz -o sample1 -t 4 -d terminal_genes.dmnd -s
 ```
 comts custom hyd -i sample1.1.fastq.gz -o sample1 -t 4 -d hyddb.all.dmnd -s Ribo_14.dmnd -c hyd_id-name.script
 ```
+
+#### Note
+- filter condition file demo:
+
+| gene | identity | coverage |
+|-------|-------|-------|
+|gene1|50|80|
+|gene2|50|80|
+|gene3|60|80|
+|...|...|...|
