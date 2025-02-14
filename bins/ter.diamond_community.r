@@ -176,7 +176,7 @@ d1$GAM <- ifelse(d1$GAM > 100,100,d1$GAM)
 r_out <- paste0(outpath,".all.abd.txt")
 write.table(d1,r_out,quote = FALSE,sep = "\t",row.names = F)
 system(sprintf("mkdir %s",outpath))
-if(run_fastp == "run"){
+if(skip_fastp == F){
 	system(sprintf("mv %s %s",fastp_output,outpath))
    }else{print("There is no need to move fastp result to outpath")}
 system(sprintf("mv %s %s",diamond_out,outpath))
