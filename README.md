@@ -46,6 +46,7 @@ ter.dmnd.gz ([Hydrogen metabolism terminal enzyme's database providede by Greeni
 |`--run_seqkit` `-k`|If you have already counted the total number of reads using seqkit, you can specify the directory of the seqkit results (e.g., 'sample_name.all.reads.txt') to skip running seqkit. By default, seqkit will be executed.|
 |`--keep_samples` `-e`|By default, the temporary results will be deleted unless this parameter is setted.|
 |`--help` `-h`|Show the help message and exit.|
+
 ```
 comts geneset ribo -i sample1.1.fastq.gz -o sample1 -t 4 -s Ribo_14.dmnd --min_length 140
 ```
