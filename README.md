@@ -48,6 +48,8 @@ ter.dmnd.gz ([Hydrogen metabolism terminal enzyme's database providede by Greeni
 |`--keep_samples` `-e`|By default, the temporary results will be deleted unless this parameter is setted.|
 |`--help` `-h`|Show the help message and exit.|
 
+#### Example
+
 ```
 comts geneset ribo -i sample1.1.fastq.gz -o sample1 -t 4 -s Ribo_14.dmnd --min_length 140
 ```
