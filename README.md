@@ -1,9 +1,9 @@
 # comts
 ## Comts: A pipeline for calculating single-copy genes’ community abundance in metagenome
 ## Introduction
-Gene abundance in metagenome datasets is commonly represented by normalized values such as Reads Per Kilobase per Million Reads (RPKM), Fragments Per Kilobase per Million (FPKM), and Transcripts Per Million (TPM). However, the abundance of functional gene within the level of microbial community (AFG), representing proportion of the community that carries a specific metabolic function, remains underexplored and lacks a standardized methodology for estimation. In this study, we introduce Comts, a comprehensive framework for estimating AFG, and present a robust, user-friendly and efficient computational pipeline designed to calculate AFG from metagenomic sequencing data. The developed pipeline makes it accessible to researchers seeking to evaluate the metabolic capabilities of microbial communities, particularly with respect to single-copy functional genes.Gene abundance in metagenome datasets is commonly represented by normalized values such as Reads Per Kilobase per Million Reads (RPKM), Fragments Per Kilobase per Million (FPKM), and Transcripts Per Million (TPM). However, the abundance of functional gene within the level of microbial community (AFG), representing proportion of the community that carries a specific metabolic function, remains underexplored and lacks a standardized methodology for estimation. In this study, we introduce Comts, a comprehensive framework for estimating AFG, and present a robust, user-friendly and efficient computational pipeline designed to calculate AFG from metagenomic sequencing data. The developed pipeline makes it accessible to researchers seeking to evaluate the metabolic capabilities of microbial communities, particularly with respect to single-copy functional genes.
+Gene abundance in metagenome datasets is commonly represented in terms of Reads Per Kilobase per Million Reads (RPKM), Fragments Per Kilobase per Million (FPKM) and Transcripts Per Million (TPM). However, the gene abundance in microbial community (GAM,%), defined as the proportion of microorganisms containing the gene to the overall population, remains underexplored and lacks a standardized methodology for estimation. In this study, we introduce Comts, a comprehensive framework for estimating GAM, and present a robust, user-friendly and efficient computational pipeline designed to calculate GAM from metagenomic sequencing data. The developed pipeline makes it accessible to researchers seeking to evaluate the metabolic capabilities of microbial communities, particularly for single-copy genes with specific metabolic function.
 ## The formula
-AFG =  (RFG×100%)/MRUSCG
+GAM =  (RSCG×100%)/MRUSCG
 
 ## Download and Installation
 ### The softwares listed below must have been installed before installation :robot:
@@ -29,8 +29,8 @@ ter.dmnd.gz ([Hydrogen metabolism terminal enzyme's database providede by Greeni
 ## Usage
 | Function | Description |
 |-------|-------|
-|`comts geneset`|To calculate community abandance of single copy function genes through GeneSet.|
-|`comts custom`|To calculate community abandance of single copy function genes through custom database.|
+|`comts geneset`|To calculate GAM of single copy genes through GeneSet.|
+|`comts custom`|To calculate GAM abandance of single copy genes through custom database.|
 
 ### comts geneset
 - `comts geneset ribo` To calculate RPKM abandance of 14 universal single copy ribosomal genes.  
