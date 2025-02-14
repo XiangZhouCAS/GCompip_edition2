@@ -35,6 +35,7 @@ ter.dmnd.gz ([Hydrogen metabolism terminal enzyme's database providede by Greeni
 ## Parameter details
 ### comts geneset ribo
 - `comts geneset ribo` To calculate RPKM abandance of 14 universal single copy ribosomal genes.  
+
 | Parameter | Description |
 |-------|-------|
 |`--input_reads` `-i`|Set the directory of reads.|
