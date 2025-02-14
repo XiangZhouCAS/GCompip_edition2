@@ -38,15 +38,15 @@ ter.dmnd.gz ([Hydrogen metabolism terminal enzyme's database providede by Greeni
 
 | Parameter | Description |
 |-------|-------|
-|`--input_reads` `-i`|Set the directory of reads.|
-|`--result` `-o`|Set the result file name.|
-|`--threads` `-t`|Set the threads of CPU,default is 1.|
-|`--UCSG_db` `-u`|Set the directory of universal single copy genes (USCGs) database.|
-|`--skip_fastp` `-s`|If you have already filtered the reads, you can set this parameter to skip running fastp. The default is to run fastp.|
-|`--min_length` `-m`|Set the minimum length required for filtering reads, the default is 100, but it is recommended to set this parameter to 140 if hydrogenases or hydrogen metabolism terminal enzymes are to be calculated.|
-|`--run_seqkit` `-k`|If you have already counted the total number of reads using seqkit, you can specify the directory of the seqkit results (e.g., 'sample_name.all.reads.txt') to skip running seqkit. By default, seqkit will be executed.|
-|`--keep_samples` `-e`|By default, the temporary results will be deleted unless this parameter is setted.|
-|`--help` `-h`|Show the help message and exit.|
+|`--input_reads` `-i`  |Set the directory of reads.|
+|`--result` `-o`  |Set the result file name.|
+|`--threads` `-t`  |Set the threads of CPU,default is 1.|
+|`--UCSG_db` `-u`  |Set the directory of universal single copy genes (USCGs) database.|
+|`--skip_fastp` `-s`  |If you have already filtered the reads, you can set this parameter to skip running fastp. The default is to run fastp.|
+|`--min_length` `-m`  |Set the minimum length required for filtering reads, the default is 100, but it is recommended to set this parameter to 140 if hydrogenases or hydrogen metabolism terminal enzymes are to be calculated.|
+|`--run_seqkit` `-k`  |If you have already counted the total number of reads using seqkit, you can specify the directory of the seqkit results (e.g., 'sample_name.all.reads.txt') to skip running seqkit. By default, seqkit will be executed.|
+|`--keep_samples` `-e`  |By default, the temporary results will be deleted unless this parameter is setted.|
+|`--help` `-h`  |Show the help message and exit.|
 
 ```
 comts geneset ribo -i sample1.1.fastq.gz -o sample1 -t 4 -s Ribo_14.dmnd --min_length 140
