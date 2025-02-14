@@ -84,15 +84,48 @@ comts geneset res -i geneset.rpkm.txt -r Ribo.rpkm.txt -o community.abd.txt
 |`--keep_samples` `-e`|By default, the temporary results will be deleted unless this parameter is setted.|
 |`--help` `-h`|Show the help message and exit.|
 
+#### Example
 ```
 comts custom diy -i sample1.1.fastq.gz -o sample1 -t 4 -d function_genes.dmnd -s Ribo_14.dmnd
 ```
 
 - `comts custom ter` To calculate single copy terminal enzyme gene community abandance.  
+
+| Parameter | Description |
+|-------|-------|
+|`--input_reads` `-i`|Please set the reads to include only the forward reads if the data is paired-end (PE).|
+|`--result` `-o`|Please set the name for the result file.|
+|`--threads` `-t`|Set the number of CPU threads, with the default value being 1.|
+|`--diamond_db` `-d`|Set the directory of universal single copy genes (USCGs) database.|
+|`--UCSG_db` `-u`|Please specify the directory for universal single-copy genes database (e.g., 'Ribo_14.dmnd'). If you have already calculated the RPKM for these genes, you may instead specify the directory for the results (e.g., 'sample_name.UCSG.hits.txt') to skip this step.|
+|`--skip_fastp` `-s`|If you have already filtered the reads, you can set this parameter to skip running fastp. The default is to run fastp.|
+|`--min_length` `-m`|Set the minimum length required for filtering reads, the default is 100, but it is recommended to set this parameter to 140 if hydrogenases or hydrogen metabolism terminal enzymes are to be calculated.|
+|`--run_seqkit` `-k`|If you have already counted the total number of reads using seqkit, you can specify the directory of the seqkit results (e.g., 'sample_name.all.reads.txt') to skip running seqkit. By default, seqkit will be executed.|
+|`--keep_samples` `-e`|By default, the temporary results will be deleted unless this parameter is setted.|
+|`--help` `-h`|Show the help message and exit.|
+
+#### Example
 ```
 comts custom ter -i sample1.1.fastq.gz -o sample1 -t 4 -d terminal_genes.dmnd -s Ribo_14.dmnd
 ```
+
 - `comts custom hyd` To calculate single copy Hydrogenase community abandance.
+
+| Parameter | Description |
+|-------|-------|
+|`--input_reads` `-i`|Please set the reads to include only the forward reads if the data is paired-end (PE).|
+|`--result` `-o`|Please set the name for the result file.|
+|`--threads` `-t`|Set the number of CPU threads, with the default value being 1.|
+|`--diamond_db` `-d`|Set the directory of universal single copy genes (USCGs) database.|
+|`--UCSG_db` `-u`|Please specify the directory for universal single-copy genes database (e.g., 'Ribo_14.dmnd'). If you have already calculated the RPKM for these genes, you may instead specify the directory for the results (e.g., 'sample_name.UCSG.hits.txt') to skip this step.|
+|`--script` `-c`|Please set the directory of hyd_id-name.script.|
+|`--skip_fastp` `-s`|If you have already filtered the reads, you can set this parameter to skip running fastp. The default is to run fastp.|
+|`--min_length` `-m`|Set the minimum length required for filtering reads, the default is 100, but it is recommended to set this parameter to 140 if hydrogenases or hydrogen metabolism terminal enzymes are to be calculated.|
+|`--run_seqkit` `-k`|If you have already counted the total number of reads using seqkit, you can specify the directory of the seqkit results (e.g., 'sample_name.all.reads.txt') to skip running seqkit. By default, seqkit will be executed.|
+|`--keep_samples` `-e`|By default, the temporary results will be deleted unless this parameter is setted.|
+|`--help` `-h`|Show the help message and exit.|
+
+#### Example
 ```
 comts custom hyd -i sample1.1.fastq.gz -o sample1 -t 4 -d hyddb.all.dmnd -s Ribo_14.dmnd -c hyd_id-name.script
 ```
