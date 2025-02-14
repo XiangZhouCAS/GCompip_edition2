@@ -53,15 +53,41 @@ ter.dmnd.gz ([Hydrogen metabolism terminal enzyme's database providede by Greeni
 ```
 comts geneset ribo -i sample1.1.fastq.gz -o sample1 -t 4 -s Ribo_14.dmnd --min_length 140
 ```
-- `comts geneset res` To convert RPKM to community abandance of single copy function gene through GeneSet.  
+- `comts geneset res` To convert RPKM to community abandance of single copy function gene through GeneSet.  .
+
+| Parameter | Description |
+|-------|-------|
+|`--input_geneset` `-i`|Please set the directory of geneset RPKM abundance file.|
+|`--input_ribo_rpkm` `-r`|Please set the directory of USCGs' RPKM file e.g.,ribo_rpkm.txt.|
+|`--output` `-o`|Please set the directory of output.|
+|`--input_ribo_rpkm` `-r`|Please set the directory of USCGs' RPKM file e.g.,ribo_rpkm.txt.|
+|`--help` `-h`|Show the help message and exit.|
+
+#### Example
 ```
 comts geneset res -i geneset.rpkm.txt -r Ribo.rpkm.txt -o community.abd.txt
 ```
 ### comts custom
 - `comts custom diy` To calculate single copy function enzyme gene community abandance by custom database.
+
+| Parameter | Description |
+|-------|-------|
+|`--input_reads` `-i`|Please set the reads to include only the forward reads if the data is paired-end (PE).|
+|`--result` `-o`|Please set the name for the result file.|
+|`--threads` `-t`|Set the number of CPU threads, with the default value being 1.|
+|`--diamond_db` `-d`|Set the directory of universal single copy genes (USCGs) database.|
+|`--UCSG_db` `-u`|Please specify the directory for universal single-copy genes database (e.g., 'Ribo_14.dmnd'). If you have already calculated the RPKM for these genes, you may instead specify the directory for the results (e.g., 'sample_name.UCSG.hits.txt') to skip this step.|
+|`--skip_fastp` `-s`|If you have already filtered the reads, you can set this parameter to skip running fastp. The default is to run fastp.|
+|`--min_length` `-m`|Set the minimum length required for filtering reads, the default is 100, but it is recommended to set this parameter to 140 if hydrogenases or hydrogen metabolism terminal enzymes are to be calculated.|
+|`--run_seqkit` `-k`|If you have already counted the total number of reads using seqkit, you can specify the directory of the seqkit results (e.g., 'sample_name.all.reads.txt') to skip running seqkit. By default, seqkit will be executed.|
+|`--filter_condition` `-l`|Please specify the filter_condition file. By default, the identity is set to 50 and the coverage to 80.|
+|`--keep_samples` `-e`|By default, the temporary results will be deleted unless this parameter is setted.|
+|`--help` `-h`|Show the help message and exit.|
+
 ```
 comts custom diy -i sample1.1.fastq.gz -o sample1 -t 4 -d function_genes.dmnd -s Ribo_14.dmnd
 ```
+
 - `comts custom ter` To calculate single copy terminal enzyme gene community abandance.  
 ```
 comts custom ter -i sample1.1.fastq.gz -o sample1 -t 4 -d terminal_genes.dmnd -s Ribo_14.dmnd
