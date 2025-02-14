@@ -11,11 +11,11 @@ GAM =  (RSCG×100%)/MRUSCG
 > seqkit  
 > fastp
 ### The R packages listed below must have been installed before installation  
-> optparse
-> dplyr
-> tidyr
-> data.table
-> magrittr
+> optparse  
+> dplyr  
+> tidyr  
+> data.table  
+> magrittr  
 > ggplot2
 ### Download throught `git clone` :
 `git clone https://github.com/XiangZhouCAS/comts.git`
