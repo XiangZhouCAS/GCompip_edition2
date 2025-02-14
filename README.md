@@ -89,7 +89,7 @@ comts geneset res -i geneset.rpkm.txt -r Ribo.rpkm.txt -o community.abd.txt
 comts custom diy -i sample1.1.fastq.gz -o sample1 -t 4 -d function_genes.dmnd -s Ribo_14.dmnd
 ```
 #### Note
-- filter condition file demo:
+filter condition file demo:
 
 | gene | identity | coverage |
 |-------|-------|-------|
