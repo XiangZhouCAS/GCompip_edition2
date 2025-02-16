@@ -1,8 +1,8 @@
 if (!require(optparse,quietly = TRUE)) {
   install.packages("optparse")
-  library(optparse)
+  suppressMessages(library(optparse))
 } else {
-  library(optparse)}
+  suppressMessages(library(optparse))}
 option_list <- list(
   make_option(c("--input_reads","-i"),type = "character",default = F,
                                 help = "Please set the directory of reads"),
@@ -73,15 +73,15 @@ if(skip_fastp == T){
            print("seqkit is completed.")}
 if(!require(magrittr)){
   install.packages("magrittr")
-  library(magrittr)
+  suppressMessages(library(magrittr))
 }else{
-  library(magrittr)}
+  suppressMessages(library(magrittr))}
 
 if(!require(dplyr)){
   install.packages("dplyr")
-  library(dplyr)
+  suppressMessages(library(dplyr))
 }else{
-  library(dplyr)}
+  suppressMessages(library(dplyr))}
 
 d2 <- read.table(singleM_out,sep = "\t")
 colnames(d2)[c(1,2,3,4)] <- c("slen","sseq_id","qcovhsp","bitscore")
