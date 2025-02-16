@@ -234,7 +234,7 @@ lv <- as.factor(lv)
 samplept <- com%>%
         pivot_longer(cols = !gene,values_to = "val",names_to = "sample")
 samplept$sample <- factor(samplept$sample,levels = lv)
-samplept$val <- as.numeric(samplept$val)
+samplept$gene <- as.numeric(samplept$gene)
 hp <- ggplot(samplept,aes(sample,gene))+
   geom_tile(aes(fill = log2(val+1)),color = "grey50")+
   scale_fill_gradientn(colours = c("white","#C12554","#31357F"),
