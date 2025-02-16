@@ -1,8 +1,8 @@
 if (!require(optparse,quietly = TRUE)) {
   install.packages("optparse")
-  library(optparse)
+  suppressMessages(library(optparse))
 } else {
-  library(optparse)}
+  suppressMessages(library(optparse))}
 option_list <- list(
   make_option(c("--input_reads","-i"),type = "character",default = F,
               help = "Please set the reads to include only the forward reads if the data is paired-end (PE)"),
@@ -102,21 +102,21 @@ if(skip_fastp == F){
 }else{print("Not run the seqkit because you set the directory of seqkit result")}}
 if (!require(magrittr)) {
   install.packages("magrittr")
-  library(magrittr)
+  suppressMessages(library(magrittr))
 } else {
-  library(magrittr)}
+  suppressMessages(library(magrittr))}
 if(!require(dplyr)){
   install.packages("dplyr")
-  library(dplyr)}else{
-  library(dplyr)}
+  suppressMessages(library(dplyr))}else{
+  suppressMessages(library(dplyr))}
 if(!require(tidyr)){
   install.packages("tidyr")
-  library(tidyr)}else{
-  library(tidyr)}
+  suppressMessages(library(tidyr))}else{
+  suppressMessages(library(tidyr))}
 if(!require(data.table)){
   install.packages("data.table")
-  library(data.table)}else{
-  library(data.table)}
+  suppressMessages(library(data.table))}else{
+  suppressMessages(library(data.table))}
 if(run_seqkit == "run"){
   p <- read.table(seqkit_out,header = T)
   }else{p <- read.table(run_seqkit,header = T)}
@@ -227,13 +227,14 @@ write.table(com,"GAM.abd.txt",
                     quote = F,row.names = F)
 if(!require(ggplot2)){
   install.packages("ggplot2")
-  library(ggplt2)
-}else{library(ggplot2)}
+  suppressMessages(library(ggplt2))
+}else{suppressMessages(library(ggplot2))}
 lv <- colnames(com)[-1]
 lv <- as.factor(lv)
 samplept <- com%>%
         pivot_longer(cols = !gene,values_to = "val",names_to = "sample")
 samplept$sample <- factor(samplept$sample,levels = lv)
+samplept$val <- as.numeric(samplept$val)
 hp <- ggplot(samplept,aes(sample,gene))+
   geom_tile(aes(fill = log2(val+1)),color = "grey50")+
   scale_fill_gradientn(colours = c("white","#C12554","#31357F"),
