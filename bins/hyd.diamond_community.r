@@ -31,9 +31,9 @@ opt_parser = OptionParser(
   prog=NULL ,
   description = "This Script is to calculate Hydrogenase community abandance.")
 opt <- parse_args(opt_parser)
-wd1 <- dirname(opt$SCG_db)
+wd1 <- dirname(opt$hyd_db)
 wd2 <- dirname(opt$USCG_db)
-diamond_db <- paste0(wd1,"/",basename(opt$SCG_db))
+diamond_db <- paste0(wd1,"/",basename(opt$hyd_db))
 singleM <- paste0(wd2,"/",basename(opt$USCG_db))
 setwd(dirname(opt$result))
 outpath <- basename(opt$result)
@@ -41,8 +41,6 @@ input_reads <- opt$input_reads
 threads <- opt$threads
 min_length <- opt$min_length
 fastp_output <- paste0(outpath,".filtered.fq.gz")
-diamond_db <- opt$hyd_db
-singleM <- opt$USCG_db
 script <- opt$script
 system(sprintf("file %s > tmp.txt",singleM))
 system(sprintf("sed 's/.*://' -i tmp.txt"))
