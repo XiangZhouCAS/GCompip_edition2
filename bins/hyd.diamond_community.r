@@ -10,16 +10,16 @@ option_list <- list(
               help = "Please specify the name for the result file."),
   make_option(c("--threads","-t"),type = "numeric",default = 1,
               help = "Set the number of CPU threads, with the default value being 1."),
-  make_option(c("--diamond_db","-d"),type = "character",default = F,
+  make_option(c("--hyd_db","-d"),type = "character",default = F,
               help = "Please set the directory of diamond database (e.g.'hyddb.all.dmnd')."),
   make_option(c("--script","-c"),type = "character",default = F,
 	      help = "Please set the directory of hyd_id-name.script"),
-  make_option(c("--UCSG_db","-u"),type = "character",default = F,
+  make_option(c("--USCG_db","-u"),type = "character",default = F,
               help = "Please specify the directory for universal single-copy genes database (e.g., 'Ribo_14.dmnd'). If you have already calculated the RPKM for these genes, you may instead specify the directory for the results (e.g., 'sample_name.UCSG.hits.txt') to skip this step."),
   make_option(c("--skip_fastp","-s"),action = "store_true", default = F,
               help = "If you have already filtered the reads, you can set this parameter to skip running fastp. The default is to run fastp."),
-  make_option(c("--min_length","-m"),type = "numeric",default = 100,
-	      help = "Set the minimum length required for filtering reads, the default is 100, but it is recommended to set this parameter to 140 if hydrogenases or hydrogen metabolism terminal enzymes are to be calculated."),
+  make_option(c("--min_length","-m"),type = "numeric",default = 70,
+	      help = "Set the minimum length required for filtering reads, the default is 70 bp."),
   make_option(c("--run_seqkit","-k"),type = "character",default = "run",
 	      help = "If you have already counted the total number of reads using seqkit, you can specify the directory of the seqkit results (e.g., 'sample_name.all.reads.txt') to skip running seqkit. By default, seqkit will be executed."),
   make_option(c("--keep_samples","-e"), action = "store_true", default = F,
@@ -31,13 +31,18 @@ opt_parser = OptionParser(
   prog=NULL ,
   description = "This Script is to calculate Hydrogenase community abandance.")
 opt <- parse_args(opt_parser)
+wd1 <- dirname(opt$SCG_db)
+wd2 <- dirname(opt$USCG_db)
+diamond_db <- paste0(wd1,"/",basename(opt$SCG_db))
+singleM <- paste0(wd2,"/",basename(opt$USCG_db))
+setwd(dirname(opt$result))
+outpath <- basename(opt$result)
 input_reads <- opt$input_reads
-outpath <- result
 threads <- opt$threads
 min_length <- opt$min_length
-fastp_output <- paste0(basename(outpath),".filtered.fq.gz")
-diamond_db <- opt$diamond_db
-singleM <- opt$UCSG_db
+fastp_output <- paste0(outpath,".filtered.fq.gz")
+diamond_db <- opt$hyd_db
+singleM <- opt$USCG_db
 script <- opt$script
 system(sprintf("file %s > tmp.txt",singleM))
 system(sprintf("sed 's/.*://' -i tmp.txt"))
@@ -47,7 +52,7 @@ skip_fastp <- opt$skip_fastp
 run_seqkit <- opt$run_seqkit
 keep_samples <- opt$keep_samples
 diamond_out <- paste0(outpath,".hits.txt")
-singleM_out <- paste0(outpath,".UCSG.hits.txt")
+singleM_out <- paste0(outpath,".USCG.hits.txt")
 seqkit_out <- paste0(outpath,".all.reads.txt")
 fastp <- sprintf("fastp -i %s -o %s --length_required %d -w %d",
                  input_reads,fastp_output,min_length,threads)
@@ -165,7 +170,7 @@ d2 <- d2%>%
   group_by(sseq_id)%>%
   mutate(T_RPKM = sum(RPKM))
 d2 <- unique(d2[,c(1,2,7)])
-s_out <- paste0(outpath,".UCSG.hits.comb.txt")
+s_out <- paste0(outpath,".USCG.hits.comb.txt")
 write.table(d2,s_out,quote = FALSE,sep = "\t",row.names = F)
 geo <- exp(mean(log(d2$T_RPKM)))
 d1$GAM <- d1$RPKM/geo*100
