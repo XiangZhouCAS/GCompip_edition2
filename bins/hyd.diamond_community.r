@@ -213,14 +213,14 @@ tmp <- read.table("all.abd.txt",header = T,sep = "\t")
 rpkm <- pivot_wider(tmp,id_cols = gene,
               values_from = "RPKM",
               names_from = "sample_name")
-rpkm[is.na(rpkm)] <- 0
+rpkm[is.na(rpkm)] <- "0"
 write.table(rpkm,"rpkm.abd.txt",
                     sep = "\t",
                     quote = F,row.names = F)
 com <- pivot_wider(tmp,id_cols = gene,
               values_from = "GAM",
               names_from = "sample_name")
-com[is.na(com)] <- 0
+com[is.na(com)] <- "0"
 com <- com[!duplicated(com[,c(1,2)]),]
 write.table(com,"GAM.abd.txt",
                     sep = "\t",
