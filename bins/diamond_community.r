@@ -40,8 +40,6 @@ outpath <- basename(opt$result)
 input_reads <- opt$input_reads
 threads <- opt$threads
 fastp_output <- paste0(outpath,".filtered.fq.gz")
-diamond_db <- opt$SCG_db
-singleM <- opt$USCG_db
 min_length <- opt$min_length
 filter_condition <- opt$filter_condition
 keep_samples <- opt$keep_samples
