@@ -1,8 +1,8 @@
 if(!require(optparse,quietly = TRUE)){
   install.packages("optparse")
-  library(optparse)
+  suppressMessages(library(optparse))
 }else{
-  library(optparse)}
+  suppressMessages(library(optparse))}
 option_list <- list(
   make_option(c("--input_geneset","-i"),type = "character",default = F,
               help = "Please set the directory of geneset RPKM abundance file"),
@@ -25,12 +25,12 @@ geneset <- read.table(geneset,header = T,
                   sep = "\t",check.names = F)
 if(!require(dplyr,quietly = TRUE)){
    install.packages("dplyr")
-   library(dplyr)}else{
-   library(dplyr)}
+   suppressMessages(library(dplyr))}else{
+   suppressMessages(library(dplyr))}
 if(!require(tidyr,quietly = TRUE)){
    install.packages("tidyr")
-   library(tidyr)}else{
-   library(tidyr)}
+   suppressMessages(library(tidyr))}else{
+   suppressMessages(library(tidyr))}
 all_data <- all_data%>%
   group_by(sample_name)%>%
   mutate(geomean = exp(mean(log(T_RPKM))))
