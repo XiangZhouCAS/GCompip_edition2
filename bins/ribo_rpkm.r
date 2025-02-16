@@ -10,7 +10,7 @@ option_list <- list(
               help = "Please set the result file name"),
   make_option(c("--threads","-t"),type = "numeric",default = 1,
               help = "Setting the threads of CPU,default is 1"),
-  make_option(c("--UCSG_db","-u"),type = "character",default = F,
+  make_option(c("--USCG_db","-u"),type = "character",default = F,
               help = "Please set the directory of universal single copy genes (USCGs) database"),
   make_option(c("--skip_fastp","-s"),action = "store_true", default = F,
               help = "If you have already filtered the reads, you can set this parameter to skip running fastp. The default is to run fastp."),
@@ -32,11 +32,11 @@ skip_fastp <- opt$skip_fastp
 min_length <- opt$min_length
 input_geneset <- opt$input_geneset
 res <- opt$result
-singleM <- opt$UCSG_db
+singleM <- opt$USCG_db
 threads <- opt$threads
 run_seqkit <- opt$run_seqkit
 keep_samples <- opt$keep_samples
-singleM_out <- paste0(basename(res),".ribo.txt")
+singleM_out <- paste0(basename(res),".USCG.txt")
 fastp_output <- paste0(basename(res),".filtered.fq.gz")
 seqkit_out <- paste0(res,".all.reads.txt")
 seqkit <- sprintf("seqkit stat %s > %s",
@@ -90,7 +90,7 @@ d2 <- d2[,-c(3,4)]
 d2 <- d2%>%
   group_by_all()%>%
   count()
-s_out <- paste0(basename(res),".ribo.rpkm.txt")
+s_out <- paste0(basename(res),".RUSCG.txt")
 if(run_seqkit == "run"){
   p <- read.table(seqkit_out,header = T)
   }else{p <- read.table(run_seqkit,header = T)}
@@ -106,10 +106,10 @@ d2 <- d2%>%
   mutate(T_RPKM = sum(RPKM))
 d2 <- unique(d2[,c(1,2,7)])
 write.table(d2,s_out,quote = F,sep = "\t",row.names = F)
-system(sprintf("cat %s >> Ribo.rpkm.txt",s_out))
-total <- read.table("Ribo.rpkm.txt",header = T,sep = "\t")
+system(sprintf("cat %s >> RUSCG.txt",s_out))
+total <- read.table("RUSCG.txt",header = T,sep = "\t")
 total <- filter(total,T_RPKM != "T_RPKM")
-write.table(total,"Ribo.rpkm.txt",quote = F,sep = "\t",row.names = F)
+write.table(total,"RUSCG.txt",quote = F,sep = "\t",row.names = F)
 
 system(sprintf("mkdir %s",res))
 if(run_seqkit == "run"){
