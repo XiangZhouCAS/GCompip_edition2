@@ -6,10 +6,10 @@ if [ $# -eq 0 ]; then
 fi
 case "$script_type" in
     ribo)
-        Rscript "$R_SCRIPTS_DIR/ribo_rpkm.r" "$@"
+        Rscript "$R_SCRIPTS_DIR/uscg_rpkm.r" "$@"
         ;;
     res)
-        Rscript "$R_SCRIPTS_DIR/ribo_rpkm2com.r" "$@"
+        Rscript "$R_SCRIPTS_DIR/uscg_rpkm2com.r" "$@"
         ;;
     *)
         Rscript "$R_SCRIPTS_DIR/comts_rpkm.help.r" "$@"
