@@ -236,12 +236,13 @@ samplept <- com%>%
 samplept$sample <- factor(samplept$sample,levels = lv)
 samplept$val <- as.numeric(samplept$val)
 hp <- ggplot(samplept,aes(sample,gene))+
-  geom_tile(aes(fill = log2(val+1)),color = "grey50")+
-  scale_fill_gradientn(colours = c("white","#C12554","#31357F"),
-                       name = expression("GAM [ Log"["2"]*"(%+1) ]"))+
+  geom_tile(aes(fill = val,color = "grey50")+
+  scale_fill_gradientn(colours = c("white","#FF471A",
+                                   "#EF1A22","#924EA4", "#262479"),
+                       name = "GAM (%)")+
   theme(panel.background = element_blank(),
         axis.title = element_blank(),
-        axis.text.x = element_text(size = 15,color = "black"),
+        axis.text.x = element_text(size = 15,color = "black",angle = 30,hjust = 1),
         legend.position = "bottom",
         legend.title = element_text(vjust = 0.75),
         axis.text.y = element_text(size = 12,color = "black"),
