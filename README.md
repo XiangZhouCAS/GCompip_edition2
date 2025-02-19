@@ -20,8 +20,9 @@ GAM =  (RSCG×100%)/MRUSCG
 ### Download throught `git clone` :
 `git clone https://github.com/XiangZhouCAS/comts.git`
 ### Installation
-1. `sh ./install.sh`
-2. `source ~/.bashrc`
+1. cd comts
+2. `sh ./install.sh`
+3. `source ~/.bashrc`
 ### DataBase
 Ribo_14.dmnd  
 hyddb_all.dmnd (Søndergaard, D., Pedersen, C. & Greening, C. HydDB: A web tool for hydrogenase classification and analysis. Sci Rep 6, 34212 (2016). https://doi.org/10.1038/srep34212)  
