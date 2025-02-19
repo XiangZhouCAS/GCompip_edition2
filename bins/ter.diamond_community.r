@@ -29,11 +29,9 @@ opt_parser = OptionParser(
   prog=NULL ,
   description = "This Script is to calculate terminal enzyme gene abundance in microbial community.")
 opt <- parse_args(opt_parser)
-wd1 <- dirname(opt$ter_db)
-wd2 <- dirname(opt$USCG_db)
-diamond_db <- paste0(wd1,"/",basename(opt$ter_db))
-singleM <- paste0(wd2,"/",basename(opt$USCG_db))
-input_reads <- file.path(getwd(),dirname(opt$input_reads))
+diamond_db <- normalizePath(opt$ter_db)
+singleM <- normalizePath(opt$USCG_db)
+input_reads <- normalizePath(opt$input_reads)
 setwd(dirname(opt$result))
 outpath <- basename(opt$result)
 threads <- opt$threads
