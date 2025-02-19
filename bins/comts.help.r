@@ -7,7 +7,7 @@ option_list <- list(
   make_option(c("--help","-h"),type = "character",default = F,
               help = "Show this help message and exit"))
 opt_parser = OptionParser(
-  usage = "usage: comts geneset	To calculate GAM and RPKM of GeneSet.\n       comts custom	To calculate single copy enzyme AFG by customed database.",
+  usage = "usage: comts geneset	To calculate GAM and RPKM of GeneSet.\n       comts custom	To calculate single copy enzyme GAM by customed database.",
   add_help_option = TRUE,
   prog=NULL ,
   description = "This page is to show how to run the program.")
