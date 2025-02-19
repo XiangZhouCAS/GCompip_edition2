@@ -35,7 +35,7 @@ wd1 <- dirname(opt$SCG_db)
 wd2 <- dirname(opt$USCG_db)
 diamond_db <- paste0(wd1,"/",basename(opt$SCG_db))
 singleM <- paste0(wd2,"/",basename(opt$USCG_db))
-input_reads <- file.path(getwd(),dirname(input_reads))
+input_reads <- file.path(getwd(),dirname(opt$input_reads))
 setwd(dirname(opt$result))
 outpath <- basename(opt$result)
 threads <- opt$threads
