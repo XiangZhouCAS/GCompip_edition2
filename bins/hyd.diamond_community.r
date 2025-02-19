@@ -35,9 +35,9 @@ wd1 <- dirname(opt$hyd_db)
 wd2 <- dirname(opt$USCG_db)
 diamond_db <- paste0(wd1,"/",basename(opt$hyd_db))
 singleM <- paste0(wd2,"/",basename(opt$USCG_db))
+input_reads <- file.path(getwd(),opt$input_reads)
 setwd(dirname(opt$result))
 outpath <- basename(opt$result)
-input_reads <- opt$input_reads
 threads <- opt$threads
 min_length <- opt$min_length
 fastp_output <- paste0(outpath,".filtered.fq.gz")
