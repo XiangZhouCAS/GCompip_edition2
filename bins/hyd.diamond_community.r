@@ -31,11 +31,9 @@ opt_parser = OptionParser(
   prog=NULL ,
   description = "This Script is to calculate Hydrogenase community abandance.")
 opt <- parse_args(opt_parser)
-wd1 <- dirname(opt$hyd_db)
-wd2 <- dirname(opt$USCG_db)
-diamond_db <- paste0(wd1,"/",basename(opt$hyd_db))
-singleM <- paste0(wd2,"/",basename(opt$USCG_db))
-input_reads <- file.path(getwd(),opt$input_reads)
+diamond_db <- normalizePath(opt$hyd_db)
+singleM <- normalizePath(opt$USCG_db)
+input_reads <- normalizePath(opt$input_reads)
 setwd(dirname(opt$result))
 outpath <- basename(opt$result)
 threads <- opt$threads
