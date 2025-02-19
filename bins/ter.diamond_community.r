@@ -213,14 +213,14 @@ tmp <- read.table("all.abd.txt",header = T,sep = "\t")
 rpkm <- pivot_wider(tmp,id_cols = gene,
               values_from = "RPKM",
               names_from = "sample_name")
-rpkm[is.na(rpkm)] <- "0"
+rpkm[is.na(rpkm)] <- 0
 write.table(rpkm,"rpkm.abd.txt",
                     sep = "\t",
                     quote = F,row.names = F)
 com <- pivot_wider(tmp,id_cols = gene,
               values_from = "GAM",
               names_from = "sample_name")
-com[is.na(com)] <- "0"
+com[is.na(com)] <- 0
 com <- com[!duplicated(com[,c(1,2)]),]
 write.table(com,"GAM.abd.txt",
                     sep = "\t",
@@ -234,7 +234,7 @@ lv <- as.factor(lv)
 samplept <- com%>%
         pivot_longer(cols = !gene,values_to = "val",names_to = "sample")
 samplept$sample <- factor(samplept$sample,levels = lv)
-samplept$val <- as.numeric(sampept$val)
+samplept$val <- as.numeric(samplept$val)
 hp <- ggplot(samplept,aes(sample,gene))+
   geom_tile(aes(fill = val,color = "grey50"))+
   scale_fill_gradientn(colours = c("white","#FF471A",
