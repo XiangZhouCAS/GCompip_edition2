@@ -6,8 +6,8 @@ if(!require(optparse,quietly = TRUE)){
 option_list <- list(
   make_option(c("--input_geneset","-i"),type = "character",default = F,
               help = "Please set the directory of geneset RPKM abundance file"),
-  make_option(c("--input_ribo_rpkm","-r"),type = "character",default = F,
-	      help = "Please set the directory of USCGs' RPKM file e.g.,ribo_rpkm.txt."),
+  make_option(c("--input_uscg_rpkm","-r"),type = "character",default = F,
+	      help = "Please set the directory of USCGs' RPKM file."),
   make_option(c("--output","-o"),type = "character",default = F,
 	      help = "Please set the directory of output"))
 opt_parser = OptionParser(
