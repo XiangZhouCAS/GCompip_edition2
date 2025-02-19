@@ -20,7 +20,7 @@ GAM =  (RSCG×100%)/MRUSCG
 ### Download throught `git clone` :
 `git clone https://github.com/XiangZhouCAS/comts.git`
 ### Installation
-1. cd  comts
+1. `cd  comts`
 2. `sh ./install.sh`
 3. `source ~/.bashrc`
 ### DataBase
