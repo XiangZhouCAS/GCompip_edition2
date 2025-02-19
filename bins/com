@@ -5,7 +5,7 @@ if [ $# -eq 0 ]; then
     set -- "-h"
 fi
 case "$script_type" in
-    ribo)
+    ruscg)
         Rscript "$R_SCRIPTS_DIR/uscg_rpkm.r" "$@"
         ;;
     res)
