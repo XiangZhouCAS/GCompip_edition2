@@ -16,8 +16,8 @@ option_list <- list(
               help = "Please specify the directory for universal single-copy genes database (e.g., 'Ribo_14.dmnd'). If you have already calculated the RPKM for these genes, you may instead specify the directory for the results (e.g., 'sample_name.USCG.hits.txt') to skip this step."),
   make_option(c("--skip_fastp","-s"), action = "store_true", default = F,
               help = "If you have already filtered the reads, you can set this parameter to skip running fastp. The default is to run fastp."),
-  make_option(c("--min_length","-m"),type = "numeric",default = 70,
-	      help = "Set the minimum length required for filtering reads, the default is 70."),
+  make_option(c("--min_length","-m"),type = "numeric",default = 100,
+	      help = "Set the minimum length required for filtering reads, the default is 100."),
   make_option(c("--run_seqkit","-k"),type = "character",default = "run",
 	      help = "If you have already counted the total number of reads using seqkit, you can specify the directory of the seqkit results (e.g., 'sample_name.all.reads.txt') to skip running seqkit. By default, seqkit will be executed."),
   make_option(c("--filter_condition","-l"),type = "character",default = "default",
@@ -239,12 +239,13 @@ samplept <- com%>%
 samplept$sample <- factor(samplept$sample,levels = lv)
 samplept$val <- as.numeric(samplept$val)
 hp <- ggplot(samplept,aes(sample,gene))+
-  geom_tile(aes(fill = log2(val+1)),color = "grey50")+
-  scale_fill_gradientn(colours = c("white","#C12554","#31357F"),
-                       name = expression("GAM [ Log"["2"]*"(%+1) ]"))+
+  geom_tile(aes(fill = val,color = "grey50")+
+  scale_fill_gradientn(colours = c("white","#FF471A",
+                                   "#EF1A22","#924EA4", "#262479"),
+                       name = "GAM (%)"))+
   theme(panel.background = element_blank(),
         axis.title = element_blank(),
-        axis.text.x = element_text(size = 15,color = "black"),
+        axis.text.x = element_text(size = 15,color = "black",angle = 30,hjust = 1),
         legend.position = "bottom",
         legend.title = element_text(vjust = 0.75),
         axis.text.y = element_text(size = 12,color = "black"),
