@@ -124,7 +124,7 @@ if(skip_fastp == F){
 wd1 <- paste0(getwd(),"/",res)
 wd2 <- paste0(getwd())
 if(keep_samples == T){
-  print("……")}else{if(file.exists("samples") == T){
+  print("samples are keeped")}else{if(file.exists("samples") == T){
     setwd(wd1)
     system(sprintf("mv %s ../samples",s_out))
     setwd(wd2)
