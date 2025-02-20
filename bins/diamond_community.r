@@ -33,6 +33,9 @@ opt_parser = OptionParser(
 opt <- parse_args(opt_parser)
 diamond_db <- normalizePath(opt$SCG_db)
 singleM <- normalizePath(opt$USCG_db)
+if(opt$run_seqkit != "run"){
+  run_seqkit <- normalizePath(opt$run_seqkit)
+}else{run_seqkit <- opt$run_seqkit}
 input_reads <- normalizePath(opt$input_reads)
 setwd(dirname(opt$result))
 outpath <- basename(opt$result)
@@ -46,7 +49,6 @@ system(sprintf("sed 's/.*://' -i tmp.txt"))
 system(sprintf("sed 's/ ASCII //g' -i tmp.txt"))
 tmp <- read.table("tmp.txt",sep = "\t")
 skip_fastp <- opt$skip_fastp
-run_seqkit <- opt$run_seqkit
 diamond_out <- paste0(basename(outpath),".hits.txt")
 singleM_out <- paste0(basename(outpath),".USCG.hits.txt")
 seqkit_out <- paste0(basename(outpath),".all.reads.txt")
