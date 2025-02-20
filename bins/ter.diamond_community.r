@@ -32,6 +32,9 @@ opt <- parse_args(opt_parser)
 diamond_db <- normalizePath(opt$ter_db)
 singleM <- normalizePath(opt$USCG_db)
 input_reads <- normalizePath(opt$input_reads)
+if(opt$run_seqkit != "run"){
+  run_seqkit <- normalizePath(opt$run_seqkit)
+}else{run_seqkit <- opt$run_seqkit}
 setwd(dirname(opt$result))
 outpath <- basename(opt$result)
 threads <- opt$threads
@@ -42,7 +45,6 @@ system(sprintf("sed 's/.*://' -i tmp.txt"))
 system(sprintf("sed 's/ ASCII //g' -i tmp.txt"))
 tmp <- read.table("tmp.txt",sep = "\t")
 skip_fastp <- opt$skip_fastp
-run_seqkit <- opt$run_seqkit
 keep_samples <- opt$keep_samples
 diamond_out <- paste0(basename(outpath),".hits.txt")
 singleM_out <- paste0(basename(outpath),".USCG.hits.txt")
