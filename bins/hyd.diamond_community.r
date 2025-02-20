@@ -15,7 +15,7 @@ option_list <- list(
   make_option(c("--script","-c"),type = "character",default = F,
 	      help = "Please set the directory of hyd_id-name.script"),
   make_option(c("--USCG_db","-u"),type = "character",default = F,
-              help = "Please specify the directory for universal single-copy genes database (e.g., 'Ribo_14.dmnd'). If you have already calculated the RPKM for these genes, you may instead specify the directory for the results (e.g., 'sample_name.UCSG.hits.txt') to skip this step."),
+              help = "Please specify the directory for universal single-copy genes database (e.g., 'Ribo_14.dmnd'). If you have already calculated the RPKM for these genes, you may instead specify the directory for the results (e.g., 'sample_name.USCG.hits.txt') to skip this step."),
   make_option(c("--skip_fastp","-s"),action = "store_true", default = F,
               help = "If you have already filtered the reads, you can set this parameter to skip running fastp. The default is to run fastp."),
   make_option(c("--min_length","-m"),type = "numeric",default = 100,
@@ -34,6 +34,9 @@ opt <- parse_args(opt_parser)
 diamond_db <- normalizePath(opt$hyd_db)
 singleM <- normalizePath(opt$USCG_db)
 input_reads <- normalizePath(opt$input_reads)
+if(opt$run_seqkit != "run"){
+  run_seqkit <- normalizePath(opt$run_seqkit)
+}else{run_seqkit <- opt$run_seqkit}
 setwd(dirname(opt$result))
 outpath <- basename(opt$result)
 threads <- opt$threads
@@ -45,7 +48,6 @@ system(sprintf("sed 's/.*://' -i tmp.txt"))
 system(sprintf("sed 's/ ASCII //g' -i tmp.txt"))
 tmp <- read.table("tmp.txt",sep = "\t")
 skip_fastp <- opt$skip_fastp
-run_seqkit <- opt$run_seqkit
 keep_samples <- opt$keep_samples
 diamond_out <- paste0(outpath,".hits.txt")
 singleM_out <- paste0(outpath,".USCG.hits.txt")
