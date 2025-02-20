@@ -236,7 +236,7 @@ samplept <- com%>%
 samplept$sample <- factor(samplept$sample,levels = lv)
 samplept$val <- as.numeric(samplept$val)
 hp <- ggplot(samplept,aes(sample,gene))+
-  geom_tile(aes(fill = val),color = "grey50"))+
+  geom_tile(aes(fill = val),color = "grey50")+
   scale_fill_gradientn(colours = c("white","#FF471A",
                                    "#EF1A22","#924EA4", "#262479"),
                        name = "GAM (%)")+
